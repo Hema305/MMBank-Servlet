@@ -181,12 +181,12 @@ public class SavingsAccountDAOImpl implements SavingsAccountDAO {
 		
 		Connection connection = DBUtil.getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement
-				("SELECT * FROM account order by saltype");
+				("SELECT * FROM account order by salaried");
 		List<SavingsAccount> savingsAccounts=new ArrayList<SavingsAccount>();
 		ResultSet resultSet = preparedStatement.executeQuery();
 		while (resultSet.next()) {                                             // Check if row(s) is present in table
 			int accountNumber = resultSet.getInt(1);
-			String accountHolderName = resultSet.getString("accountH");
+			String accountHolderName = resultSet.getString("accountHolderName");
 			double accountBalance = resultSet.getDouble(3);
 			boolean salary = resultSet.getBoolean("salaried");
 			SavingsAccount savingsAccount = new SavingsAccount(accountNumber, accountHolderName, accountBalance,
@@ -198,3 +198,4 @@ public class SavingsAccountDAOImpl implements SavingsAccountDAO {
 
 	
 }
+
